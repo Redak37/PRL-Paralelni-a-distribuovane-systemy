@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+#preklad cpp zdrojaku
+mpic++ --prefix /usr/local/share/OpenMPI -o pms pms.cpp
+
+#vyrobeni souboru s random cisly
+dd if=/dev/random bs=1 count=16 of=numbers >/dev/null 2>&1
+
+#spusteni
+mpirun --prefix /usr/local/share/OpenMPI -np 5 pms
+
+#uklid
+rm -f pms numbers
